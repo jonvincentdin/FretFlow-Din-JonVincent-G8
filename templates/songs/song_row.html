@@ -1,0 +1,4 @@
+<li class="song-row">
+    <div class="song-identity"><a href="{{ song.get_absolute_url }}">{{ song.title }}</a><span class="muted">{{ song.artist|default:'No artist added' }}</span></div>
+    <span class="song-updated muted">Edited <time datetime="{{ song.updated_at|date:'c' }}">{{ song.updated_at|date:'Y-m-d' }}</time></span>
+</li>

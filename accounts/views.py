@@ -44,7 +44,10 @@ def dashboard(request):
 def member_dashboard(request):
     if request.user.is_staff:
         raise PermissionDenied
-    return render(request, 'accounts/member_dashboard.html')
+    songs = request.user.songs.defer('content')
+    return render(request, 'accounts/member_dashboard.html', {
+        'song_count': songs.count(), 'recent_songs': songs[:5],
+    })
 
 
 @login_required

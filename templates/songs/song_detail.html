@@ -1,0 +1,12 @@
+{% extends 'songs/base.html' %}
+{% block title %}{{ song.title }} · FretFlow{% endblock %}
+{% block content %}
+    <a class="back-link" href="{% url 'songs:list' %}">Back to library</a>
+    <div class="page-heading song-heading">
+        <div><h1>{{ song.title }}</h1>{% if song.artist %}<p class="song-artist muted">{{ song.artist }}</p>{% endif %}</div>
+        <a class="button" href="{% url 'songs:edit' song.pk %}">Edit song</a>
+    </div>
+    <div class="sheet-heading"><h2>Song sheet</h2><span class="muted">Plain-text view</span></div>
+    <pre class="song-sheet" tabindex="0" role="region" aria-label="Song sheet; scroll horizontally for long lines"><code>{{ song.content }}</code></pre>
+    <div class="song-footer"><span class="muted">Last edited {{ song.updated_at|date:'M j, Y' }}</span><a class="danger-link" href="{% url 'songs:delete' song.pk %}">Delete song</a></div>
+{% endblock %}

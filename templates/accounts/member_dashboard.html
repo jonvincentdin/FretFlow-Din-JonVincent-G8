@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'songs/base.html' %}
 {% block title %}Your workspace · FretFlow{% endblock %}
 {% block content %}
     <div class="page-heading">
@@ -16,9 +16,14 @@
             <div><dt>Default tempo</dt><dd>{{ user.default_bpm }} <span class="unit">BPM</span></dd></div>
         </dl>
     </section>
-    <section class="workspace-empty" aria-labelledby="music-title">
-        <h2 id="music-title">Your music starts here.</h2>
-        <p>Song libraries and setlists are coming in the next steps. For now, make yourself at home and set your practice preferences.</p>
-        <a class="button" href="{% url 'accounts:profile' %}">Set up your profile</a>
+    <section class="recent-songs" aria-labelledby="music-title">
+        <div class="section-heading"><h2 id="music-title">Your songs</h2><a href="{% url 'songs:list' %}">Open library</a></div>
+        <p class="muted library-count">{{ song_count }} saved song{{ song_count|pluralize }}{% if song_count %} · Recently edited{% endif %}</p>
+        {% if recent_songs %}
+            <ul class="song-list" aria-label="Recently edited songs">{% for song in recent_songs %}{% include 'songs/song_row.html' %}{% endfor %}</ul>
+        {% else %}
+            <p class="muted">Start your library with a chord sheet or tablature you want to practice.</p>
+        {% endif %}
+        <a class="button" href="{% url 'songs:create' %}">Add a song</a>
     </section>
 {% endblock %}
