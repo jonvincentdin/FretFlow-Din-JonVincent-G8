@@ -15,7 +15,9 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.non_field_errors }}
-                {% for field in form %}<div class="field">{{ field.as_field_group }}</div>{% endfor %}
+                {% for field in form %}
+                    {% include 'accounts/auth_field.html' %}
+                {% endfor %}
                 <button class="button full-width" type="submit">Create account</button>
             </form>
             <p class="form-footer">Already a member? <a href="{% url 'accounts:login' %}">Sign in</a></p>
