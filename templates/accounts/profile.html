@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Profile & preferences · FretFlow{% endblock %}
+{% block content %}
+    <div class="page-heading">
+        <h1>Make it yours.</h1>
+        <p class="muted">Your profile and the way you like to practice.</p>
+    </div>
+    <form method="post" class="profile-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <section class="settings-section" aria-labelledby="details-title">
+            <div class="settings-description">
+                <h2 id="details-title">Your details</h2>
+                <p>You're signed in as <strong>{{ user.username }}</strong>. Only you can edit this profile.</p>
+            </div>
+            <div class="settings-panel">
+                <div class="name-fields">
+                    <div class="field">{{ form.first_name.as_field_group }}</div>
+                    <div class="field">{{ form.last_name.as_field_group }}</div>
+                </div>
+                <div class="field">{{ form.email.as_field_group }}</div>
+                <div class="field">{{ form.contact_number.as_field_group }}</div>
+            </div>
+        </section>
+        <section class="settings-section" aria-labelledby="practice-title">
+            <div class="settings-description">
+                <h2 id="practice-title">Practice preferences</h2>
+                <p>Set your starting point for the chart tools coming next.</p>
+                <p>Standard six-string tuning<br><span class="tuning-value">E A D G B E</span></p>
+            </div>
+            <div class="settings-panel">
+                <div class="field">{{ form.preferred_accidentals.as_field_group }}</div>
+                <div class="field">{{ form.default_bpm.as_field_group }}</div>
+            </div>
+        </section>
+        <div class="form-actions">
+            <a href="{% url 'accounts:dashboard' %}">Back to home</a>
+            <button class="button" type="submit">Save changes</button>
+        </div>
+    </form>
+{% endblock %}

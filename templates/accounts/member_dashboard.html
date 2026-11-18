@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Your workspace · FretFlow{% endblock %}
+{% block content %}
+    <div class="page-heading">
+        <h1>Hello, {{ user.display_name }}.</h1>
+        <p class="muted">A place to settle in and make music.</p>
+    </div>
+    <section class="preferences-summary" aria-labelledby="preferences-title">
+        <div class="section-heading">
+            <h2 id="preferences-title">Your practice setup</h2>
+            <a href="{% url 'accounts:profile' %}">Edit preferences</a>
+        </div>
+        <dl class="setup-grid">
+            <div><dt>Standard tuning</dt><dd class="tuning-value">E A D G B E</dd></div>
+            <div><dt>Chord spelling</dt><dd>{{ user.get_preferred_accidentals_display }}</dd></div>
+            <div><dt>Default tempo</dt><dd>{{ user.default_bpm }} <span class="unit">BPM</span></dd></div>
+        </dl>
+    </section>
+    <section class="workspace-empty" aria-labelledby="music-title">
+        <h2 id="music-title">Your music starts here.</h2>
+        <p>Song libraries and setlists are coming in the next steps. For now, make yourself at home and set your practice preferences.</p>
+        <a class="button" href="{% url 'accounts:profile' %}">Set up your profile</a>
+    </section>
+{% endblock %}
