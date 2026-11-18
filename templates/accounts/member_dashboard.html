@@ -1,29 +1,31 @@
 {% extends 'songs/base.html' %}
 {% block title %}Your workspace · FretFlow{% endblock %}
 {% block content %}
-    <div class="page-heading">
-        <h1>Hello, {{ user.display_name }}.</h1>
-        <p class="muted">A place to settle in and make music.</p>
+    <div class="page-heading dashboard-heading">
+        <div><h1>Hello, {{ user.display_name }}.</h1><p class="muted">Pick a song. Make a little time to play.</p></div>
+        <a class="button" href="{% url 'songs:create' %}">Add a song</a>
     </div>
+    <div class="dashboard-grid">
+    <section class="recent-songs workspace-panel" aria-labelledby="music-title">
+        <div class="section-heading"><h2 id="music-title">Recently edited</h2><a href="{% url 'songs:list' %}">Open library</a></div>
+        <p class="muted library-count">{{ song_count }} saved song{{ song_count|pluralize }}</p>
+        {% if recent_songs %}
+            <ul class="song-list" aria-label="Recently edited songs">{% for song in recent_songs %}{% include 'songs/song_row.html' %}{% endfor %}</ul>
+        {% else %}
+            <div class="dashboard-empty"><h3>Start with one song.</h3><p>Add a chord sheet or tablature you want to learn. Your saved songs will appear here.</p></div>
+        {% endif %}
+    </section>
     <section class="preferences-summary" aria-labelledby="preferences-title">
         <div class="section-heading">
-            <h2 id="preferences-title">Your practice setup</h2>
-            <a href="{% url 'accounts:profile' %}">Edit preferences</a>
+            <h2 id="preferences-title">Practice setup</h2>
+            <a href="{% url 'accounts:profile' %}">Edit</a>
         </div>
         <dl class="setup-grid">
             <div><dt>Standard tuning</dt><dd class="tuning-value">E A D G B E</dd></div>
             <div><dt>Chord spelling</dt><dd>{{ user.get_preferred_accidentals_display }}</dd></div>
-            <div><dt>Default tempo</dt><dd>{{ user.default_bpm }} <span class="unit">BPM</span></dd></div>
+            <div><dt>Default tempo</dt><dd class="tempo-value">{{ user.default_bpm }} <span class="unit">BPM</span></dd></div>
         </dl>
+        <p class="setup-note">Your starting preferences for the chart tools coming next.</p>
     </section>
-    <section class="recent-songs" aria-labelledby="music-title">
-        <div class="section-heading"><h2 id="music-title">Your songs</h2><a href="{% url 'songs:list' %}">Open library</a></div>
-        <p class="muted library-count">{{ song_count }} saved song{{ song_count|pluralize }}{% if song_count %} · Recently edited{% endif %}</p>
-        {% if recent_songs %}
-            <ul class="song-list" aria-label="Recently edited songs">{% for song in recent_songs %}{% include 'songs/song_row.html' %}{% endfor %}</ul>
-        {% else %}
-            <p class="muted">Start your library with a chord sheet or tablature you want to practice.</p>
-        {% endif %}
-        <a class="button" href="{% url 'songs:create' %}">Add a song</a>
-    </section>
+    </div>
 {% endblock %}
