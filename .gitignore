@@ -13,7 +13,8 @@ media/
 .supabase/
 supabase/.temp/
 .taste-skill/
-.impeccable/*
-!.impeccable/design.json
-!.impeccable/accounts-direction.md
+.impeccable/
+docs/
+*.[mM][dD]
+!README.md
 .tmp/
