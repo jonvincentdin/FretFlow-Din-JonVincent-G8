@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}Sign in · FretFlow{% endblock %}
+{% block auth_navigation %}<a href="{% url 'accounts:register' %}">Create an account</a>{% endblock %}
 {% block content %}
     <div class="auth-layout">
         <section class="auth-intro" aria-labelledby="intro-title">
-            <h2 id="intro-title">Make room<br>for practice.</h2>
-            <p>A workspace for the songs you want to play. Start with an account that feels like your own.</p>
-            <div class="tuning" aria-label="Standard guitar tuning">
-                <span>E</span><span>A</span><span>D</span><span>G</span><span>B</span><span>E</span>
-            </div>
-            <p class="intro-caption">Six strings. Your own rhythm.</p>
+            <h2 id="intro-title">Your songs.<br>Your own rhythm.</h2>
+            <p>Keep your chords, lyrics and tabs in one place. A little less searching, a little more playing.</p>
+            {% include 'accounts/practice_preview.html' %}
+            <p class="auth-note">Built around standard six-string guitar.</p>
         </section>
         <section class="auth-form" aria-labelledby="form-title">
             <h1 id="form-title">Sign in</h1>
-            <p class="muted">Pick up where you left off.</p>
+            <p class="muted">Your practice space is ready when you are.</p>
             <form method="post">
                 {% csrf_token %}
                 {{ form.non_field_errors }}

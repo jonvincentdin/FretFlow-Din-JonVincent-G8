@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
 {% block title %}Administration · FretFlow{% endblock %}
 {% block content %}
-    <div class="page-heading">
-        <h1>Manage FretFlow.</h1>
-        <p class="muted">Signed in as {{ user.username }} with administrator access.</p>
-    </div>
-    <section class="workspace-empty" aria-labelledby="admin-title">
-        <h2 id="admin-title">Keep the workspace running.</h2>
-        <p>Open Django administration to manage the records your account has permission to access. Administrator permissions are assigned privately.</p>
+    <div class="page-heading dashboard-heading">
+        <div><h1>Administration</h1><p class="muted">Keep FretFlow ready for the people who play.</p></div>
         <a class="button" href="{% url 'admin:index' %}">Open administration</a>
+    </div>
+    <div class="dashboard-grid">
+    <section class="workspace-panel admin-panel" aria-labelledby="admin-title">
+        <h2 id="admin-title">Accounts &amp; permissions</h2>
+        <p>Use Django administration to manage the records available to your account.</p>
+        <ul class="admin-notes"><li>Administrator access is assigned privately.</li><li>Member song libraries remain scoped to their owners.</li><li>Your available actions follow your account permissions.</li></ul>
+        {% if perms.accounts.view_user %}<a href="{% url 'admin:accounts_user_changelist' %}">View accounts</a>{% endif %}
     </section>
-    <section class="admin-profile">
-        <h2>Your account</h2>
-        <p>Update your own details and practice preferences.</p>
-        <a href="{% url 'accounts:profile' %}">Edit your profile</a>
+    <section class="workspace-panel" aria-labelledby="account-title">
+        <h2 id="account-title">Your account</h2>
+        <dl class="account-details">
+            <div><dt>Username</dt><dd>{{ user.username }}</dd></div>
+            <div><dt>Access</dt><dd>{% if user.is_superuser %}Superuser{% else %}Staff administrator{% endif %}</dd></div>
+            <div><dt>Email</dt><dd>{{ user.email }}</dd></div>
+            <div><dt>Joined</dt><dd>{{ user.date_joined|date:'M j, Y' }}</dd></div>
+        </dl>
+        <a href="{% url 'accounts:profile' %}">Edit profile</a>
     </section>
+    </div>
 {% endblock %}

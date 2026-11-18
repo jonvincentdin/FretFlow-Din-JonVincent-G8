@@ -94,6 +94,12 @@ The templates use a locally hosted Instrument Sans font. Its license is in
 Shared brand assets live in `static/assets/`. The supplied guitar-pick logo is
 used by the shared header and browser icon. `static/root.css` contains the
 supplied brand palette and loads before the component styles on every page.
+The shared UI now uses its dark background, orange actions, typography and
+control tokens directly. Account and dashboard layouts adapt to phone widths.
+
+The [instructions audit](docs/INSTRUCTIONS_AUDIT.md) maps required account and
+repository features to their verification. The wider chart and performance
+features remain separate milestones in PROJECT_FLOW.md.
 
 This is a local development setup with `DEBUG=True`. Production deployment and
 its hosting/security configuration belong to the final project step.

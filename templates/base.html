@@ -34,7 +34,7 @@
                     </form>
                 </div>
             {% else %}
-                <span class="muted">A little more time for playing.</span>
+                <div class="auth-navigation">{% block auth_navigation %}<span class="muted">Your personal practice space.</span>{% endblock %}</div>
             {% endif %}
         </header>
         <main id="main" class="{% if user.is_authenticated %}app-main{% else %}auth-main{% endif %}">
