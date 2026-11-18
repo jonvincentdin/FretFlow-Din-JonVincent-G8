@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Sign in · FretFlow{% endblock %}
-{% block auth_navigation %}<a href="{% url 'accounts:register' %}">Create an account</a>{% endblock %}
+{% block auth_navigation %}{% endblock %}
 {% block content %}
     <div class="auth-layout">
         <section class="auth-intro" aria-labelledby="intro-title">
-            <h2 id="intro-title">Your songs.<br>Your own rhythm.</h2>
+            <h2 id="intro-title" class="auth-gradient-title">Your songs.<br>Your own rhythm.</h2>
             <p>Keep your chords, lyrics and tabs in one place. A little less searching, a little more playing.</p>
             {% include 'accounts/practice_preview.html' %}
             <p class="auth-note">Built around standard six-string guitar.</p>
@@ -15,7 +15,9 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.non_field_errors }}
-                {% for field in form %}<div class="field">{{ field.as_field_group }}</div>{% endfor %}
+                {% for field in form %}
+                    {% include 'accounts/auth_field.html' %}
+                {% endfor %}
                 {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
                 <button class="button full-width" type="submit">Sign in</button>
             </form>
