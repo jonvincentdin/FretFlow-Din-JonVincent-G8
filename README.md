@@ -16,6 +16,10 @@ Copy-Item .env.example .env
 ```
 
 Skip copying the template when `.env` already contains your credentials.
+If you run `py manage.py runserver` without activating `.venv`, install the
+requirements for that Python interpreter too: `py -m pip install -r requirements.txt`.
+An error such as `No module named 'dj_database_url'` means that interpreter
+is missing the project dependencies.
 Set `DJANGO_SECRET_KEY`, `DATABASE_URL` and `SUPABASE_URL` in `.env`.
 Generate a signing key with:
 
@@ -86,6 +90,10 @@ $env:TEST_DATABASE_URL = 'postgresql://USER:PASSWORD@127.0.0.1:5432/postgres'
 
 The templates use a locally hosted Instrument Sans font. Its license is in
 `static/accounts/fonts/OFL.txt`.
+
+Shared brand assets live in `static/assets/`. The supplied guitar-pick logo is
+used by the shared header and browser icon. `static/root.css` contains the
+supplied brand palette and loads before the component styles on every page.
 
 This is a local development setup with `DEBUG=True`. Production deployment and
 its hosting/security configuration belong to the final project step.

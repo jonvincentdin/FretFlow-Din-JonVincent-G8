@@ -43,7 +43,7 @@ p { max-width: 65ch; }
 .skip-link { position: fixed; top: -80px; left: 16px; z-index: 10; padding: 12px 20px; background: var(--ground); }
 .skip-link:focus { top: 12px; }
 .wordmark { display: inline-flex; align-items: center; gap: 11px; color: var(--text); text-decoration: none; font-size: 25px; font-weight: 600; letter-spacing: -.025em; }
-.wordmark svg { color: var(--accent); flex: 0 0 auto; }
+.wordmark img { display: block; flex: 0 0 auto; width: 40px; height: 40px; object-fit: contain; }
 .wordmark:hover { color: var(--text); }
 .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 22px; border: 0; border-radius: var(--radius-control); background: var(--accent); color: var(--ground); font-weight: 600; text-decoration: none; cursor: pointer; }
 .button:hover { background: var(--accent-hover); color: var(--ground); }
