@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Access restricted · FretFlow{% endblock %}
+{% block content %}
+    <section class="workspace-empty">
+        <h1>This page belongs to another role.</h1>
+        <p>Open your own dashboard to continue using FretFlow.</p>
+        <a class="button" href="{% url 'accounts:dashboard' %}">Go to your dashboard</a>
+    </section>
+{% endblock %}

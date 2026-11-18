@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Create an account · FretFlow{% endblock %}
+{% block content %}
+    <div class="auth-layout registration">
+        <section class="auth-intro" aria-labelledby="intro-title">
+            <h2 id="intro-title">A place for<br>your playing.</h2>
+            <p>One account for your personal practice workspace. Set your preferences, then make it yours.</p>
+            <div class="tuning" aria-label="Standard guitar tuning">
+                <span>E</span><span>A</span><span>D</span><span>G</span><span>B</span><span>E</span>
+            </div>
+            <p class="intro-caption">Built around standard six-string guitar.</p>
+        </section>
+        <section class="auth-form" aria-labelledby="form-title">
+            <h1 id="form-title">Create an account</h1>
+            <p class="muted">Your practice starts here.</p>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {% for field in form %}<div class="field">{{ field.as_field_group }}</div>{% endfor %}
+                <button class="button full-width" type="submit">Create account</button>
+            </form>
+            <p class="form-footer">Already a member? <a href="{% url 'accounts:login' %}">Sign in</a></p>
+        </section>
+    </div>
+{% endblock %}
