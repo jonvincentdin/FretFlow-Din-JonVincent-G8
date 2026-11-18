@@ -3,7 +3,7 @@
 A Django workspace for guitar practice and live performance.
 
 Accounts and a private song library are available. Chart tools and setlists
-are tracked as later steps in [PROJECT_FLOW.md](PROJECT_FLOW.md).
+are planned for later steps.
 
 ## Run on Windows
 
@@ -97,9 +97,8 @@ supplied brand palette and loads before the component styles on every page.
 The shared UI now uses its dark background, orange actions, typography and
 control tokens directly. Account and dashboard layouts adapt to phone widths.
 
-The [instructions audit](docs/INSTRUCTIONS_AUDIT.md) maps required account and
-repository features to their verification. The wider chart and performance
-features remain separate milestones in PROJECT_FLOW.md.
+Planning, design and verification documents are kept locally and excluded
+from version control.
 
 This is a local development setup with `DEBUG=True`. Production deployment and
 its hosting/security configuration belong to the final project step.
