@@ -1,0 +1,30 @@
+{% extends 'songs/base.html' %}
+{% block title %}Song library · FretFlow{% endblock %}
+{% block content %}
+    <div class="page-heading song-heading">
+        <div><h1>Your song library</h1><p class="muted">The chords, lyrics and tabs you want to keep.</p></div>
+        <a class="button" href="{% url 'songs:create' %}">Add a song</a>
+    </div>
+    <form method="get" class="song-search" role="search">
+        <div class="field"><label for="song-search">Search title or artist</label><input id="song-search" type="search" name="q" value="{{ query }}" maxlength="200"></div>
+        <button class="button button-secondary" type="submit">Search</button>
+        {% if query %}<a href="{% url 'songs:list' %}">Clear search</a>{% endif %}
+    </form>
+    <p class="muted library-count">{{ page_obj.paginator.count }} {% if query %}result{{ page_obj.paginator.count|pluralize }} for “{{ query }}”{% else %}song{{ page_obj.paginator.count|pluralize }}{% endif %}</p>
+    {% if page_obj %}
+        <ul class="song-list" aria-label="Your saved songs">
+            {% for song in page_obj %}{% include 'songs/song_row.html' %}{% endfor %}
+        </ul>
+        {% if page_obj.has_other_pages %}
+            <nav class="pagination" aria-label="Song library pages">
+                {% if page_obj.has_previous %}<a href="?q={{ query|urlencode }}&amp;page={{ page_obj.previous_page_number }}">Previous</a>{% endif %}
+                <span>{{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ page_obj.paginator.count }}</span>
+                {% if page_obj.has_next %}<a href="?q={{ query|urlencode }}&amp;page={{ page_obj.next_page_number }}">Next</a>{% endif %}
+            </nav>
+        {% endif %}
+    {% elif query %}
+        <section class="library-empty"><h2>No matching songs.</h2><p>Try another title or artist, or clear your search to see your library.</p><a href="{% url 'songs:list' %}">Show all songs</a></section>
+    {% else %}
+        <section class="library-empty"><h2>Start with one song.</h2><p>Add a title and paste your chord sheet or tablature. Your saved songs stay in your personal library.</p></section>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'songs/base.html' %}
+{% block title %}{% if song %}Edit song{% else %}Add a song{% endif %} · FretFlow{% endblock %}
+{% block content %}
+    <div class="page-heading"><h1>{% if song %}Edit your song{% else %}Add a song{% endif %}</h1><p class="muted">Keep your original chord sheet or tablature in one place.</p></div>
+    <form method="post" class="song-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="song-metadata"><div class="field">{{ form.title.as_field_group }}</div><div class="field">{{ form.artist.as_field_group }}</div></div>
+        <div class="field">{{ form.content.as_field_group }}</div>
+        <div class="form-actions">
+            <a href="{% if song %}{{ song.get_absolute_url }}{% else %}{% url 'songs:list' %}{% endif %}">Cancel</a>
+            <button class="button" type="submit">{% if song %}Save changes{% else %}Save song{% endif %}</button>
+        </div>
+    </form>
+{% endblock %}

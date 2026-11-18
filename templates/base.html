@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}FretFlow{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'accounts/app.css' %}">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -22,6 +23,7 @@
                 <p class="workspace-label">{% if user.is_staff %}Site administration{% else %}Your practice workspace{% endif %}</p>
                 <nav aria-label="Main navigation">
                     <a href="{% url 'accounts:dashboard' %}" {% if request.resolver_match.url_name == 'member_dashboard' or request.resolver_match.url_name == 'admin_dashboard' %}aria-current="page"{% endif %}>Home</a>
+                    {% if not user.is_staff %}<a href="{% url 'songs:list' %}" {% if request.resolver_match.app_name == 'songs' %}aria-current="page"{% endif %}>Song library</a>{% endif %}
                     <a href="{% url 'accounts:profile' %}" {% if request.resolver_match.url_name == 'profile' %}aria-current="page"{% endif %}>Profile &amp; preferences</a>
                 </nav>
                 <div class="account-menu">

@@ -1,0 +1,58 @@
+textarea { font: inherit; caret-color: var(--accent); }
+.field textarea { display: block; width: 100%; max-width: 100%; min-height: 360px; padding: 16px; border: 1px solid var(--control); border-radius: var(--radius-control); background: var(--ground); color: var(--text); resize: vertical; }
+.field textarea:hover { border-color: var(--muted); }
+.field textarea[aria-invalid='true'] { border-color: var(--negative); }
+.field .song-editor, .song-sheet { font: 15px/1.7 ui-monospace, 'Cascadia Mono', Consolas, monospace; tab-size: 4; }
+.song-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.song-heading > div { min-width: 0; }
+.song-heading .button { flex-shrink: 0; }
+.song-heading p { margin-bottom: 0; }
+.song-metadata { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+.song-search { display: flex; gap: var(--gap); align-items: end; flex-wrap: wrap; margin-bottom: 24px; }
+.song-search .field { width: min(100%, 360px); margin: 0; }
+.song-search > a { align-self: center; margin-top: 28px; }
+.button-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--control); font-weight: 500; }
+.button-secondary:hover { background: var(--border); color: var(--text); }
+.library-count { font-size: 14px; margin: 0 0 8px; overflow-wrap: anywhere; }
+.song-list { list-style: none; padding: 0; margin: 0; }
+.song-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--gap); min-height: 82px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.song-identity { min-width: 0; display: grid; gap: 4px; }
+.song-identity a { font-size: 16px; font-weight: 500; text-decoration: none; overflow-wrap: anywhere; }
+.song-identity a:hover { text-decoration: underline; }
+.song-identity > span { font-size: 13px; overflow-wrap: anywhere; }
+.song-updated { font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.library-empty { background: var(--surface); border-radius: var(--radius); padding: 32px; margin-top: 24px; }
+.library-empty h2 { font-size: 23px; font-weight: 500; }
+.library-empty p { color: var(--muted); max-width: 52ch; margin-bottom: 0; }
+.library-empty > a { display: inline-block; margin-top: 16px; }
+.pagination { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 32px; font-size: 14px; font-variant-numeric: tabular-nums; }
+.back-link { display: inline-block; margin-bottom: 28px; font-size: 14px; }
+.sheet-heading { display: flex; align-items: baseline; justify-content: space-between; gap: var(--gap); margin-bottom: 16px; }
+.sheet-heading h2 { margin: 0; font-size: 16px; }
+.sheet-heading > span { font-size: 13px; }
+.song-sheet { white-space: pre; overflow: auto; max-width: 100%; padding: 24px; margin: 0; background: var(--surface); border-radius: var(--radius); }
+.song-sheet code { font: inherit; }
+.song-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--gap); margin-top: 24px; font-size: 14px; }
+.danger-link { color: var(--negative); }
+.danger-link:hover { color: var(--text); }
+.button-danger { background: var(--negative); }
+.button-danger:hover { background: var(--text); }
+.delete-summary { padding: 28px; background: var(--surface); border-radius: var(--radius); margin-bottom: 28px; overflow-wrap: anywhere; }
+.delete-summary h2 { font-size: 22px; }
+.delete-summary > :last-child { margin-bottom: 0; }
+.delete-actions { display: flex; align-items: center; gap: 28px; }
+.recent-songs { margin-top: 40px; }
+.recent-songs .section-heading { margin-bottom: 8px; }
+.recent-songs .library-count { margin-bottom: 0; }
+.recent-songs > .button { margin-top: 24px; }
+@media (max-width: 760px) {
+    .song-heading { flex-direction: column; gap: 16px; }
+    .song-metadata { grid-template-columns: 1fr; gap: 0; }
+    .song-search .field { width: 100%; }
+    .song-search > a { margin-top: 0; }
+    .song-row { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; }
+    .song-updated { text-align: left; }
+    .song-sheet { padding: 20px; }
+    .sheet-heading { flex-wrap: wrap; }
+    .library-empty { padding: 24px; }
+}

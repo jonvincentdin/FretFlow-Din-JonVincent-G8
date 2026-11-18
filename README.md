@@ -2,8 +2,8 @@
 
 A Django workspace for guitar practice and live performance.
 
-The accounts app is the first delivery. Song libraries, chart tools and setlists
-are tracked separately in [PROJECT_FLOW.md](PROJECT_FLOW.md).
+Accounts and a private song library are available. Chart tools and setlists
+are tracked as later steps in [PROJECT_FLOW.md](PROJECT_FLOW.md).
 
 ## Run on Windows
 
@@ -53,6 +53,21 @@ Create the site's administrator privately:
 
 No default administrator or shared password is included.
 
+## Song library
+
+Members can add a title, optional artist, and a plain-text chord sheet or ASCII
+tab. The editor preserves spacing and accepts up to 50,000 characters. Search
+matches titles and artists; the library pages through 20 songs at a time.
+The dashboard shows the Member's real song total and five most recent edits.
+
+Every read, edit and delete is scoped to the signed-in Member. Another Member's
+song URL returns 404; staff accounts cannot open the Member song workspace.
+Deletion requires a confirmation page and a CSRF-protected POST.
+
+The sheet is currently a plain-text view. Long lines scroll inside the sheet
+instead of wrapping or widening the page. Formatting, transposition, diagrams,
+auto-scrolling and setlists belong to later steps.
+
 ## Checks
 
 ```powershell
@@ -60,13 +75,13 @@ No default administrator or shared password is included.
 .\.venv\Scripts\python.exe manage.py makemigrations --check --dry-run
 ```
 
-Run the account suite against a **separate, disposable PostgreSQL instance**.
+Run the account and song suites against a **separate, disposable PostgreSQL instance**.
 Its database user needs permission to create a test database. Django creates
 and drops that test database; this command does not use the hosted app schema.
 
 ```powershell
 $env:TEST_DATABASE_URL = 'postgresql://USER:PASSWORD@127.0.0.1:5432/postgres'
-.\.venv\Scripts\python.exe manage.py test accounts --settings=fretflow.test_settings --noinput
+.\.venv\Scripts\python.exe manage.py test accounts songs --settings=fretflow.test_settings --noinput
 ```
 
 The templates use a locally hosted Instrument Sans font. Its license is in

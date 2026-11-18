@@ -1,0 +1,11 @@
+{% extends 'songs/base.html' %}
+{% block title %}Delete song · FretFlow{% endblock %}
+{% block content %}
+    <div class="page-heading"><h1>Delete this song?</h1><p class="muted">This permanently removes the song from your library.</p></div>
+    <section class="delete-summary"><h2>{{ song.title }}</h2>{% if song.artist %}<p class="muted">{{ song.artist }}</p>{% endif %}</section>
+    <form method="post" class="delete-actions">
+        {% csrf_token %}
+        <a href="{{ song.get_absolute_url }}">Keep song</a>
+        <button class="button button-danger" type="submit">Delete song</button>
+    </form>
+{% endblock %}
