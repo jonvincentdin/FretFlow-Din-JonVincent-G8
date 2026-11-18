@@ -1,0 +1,16 @@
+:root {
+  --color-background: #0B0B0F;
+  --color-surface: #1A1A1F;
+  --color-primary: #F7931E;
+  --color-secondary: #FBBF24;
+  --color-accent: #EF4444;
+  --color-text: #FFFFFF;
+  --color-text-muted: #A1A1AA;
+  --color-border: #2A2A2F;
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    #F7931E,
+    #FBBF24
+  );
+}
